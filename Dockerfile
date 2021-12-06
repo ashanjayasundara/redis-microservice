@@ -1,6 +1,4 @@
-FROM maven:3.8.4-jdk-8
-WORKDIR /usr/msc/app
-RUN mvn clean install package
+FROM openjdk:8-jdk-alpine
 ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} application.jar
-ENTRYPOINT ["java","-jar","/application.jar"]
+COPY ${JAR_FILE} rest-microservice-0.0.1.jar
+ENTRYPOINT ["java","-jar","/rest-microservice-0.0.1.jar"]
