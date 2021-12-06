@@ -1,8 +1,6 @@
-FROM openjdk:8-jdk-alpine
+FROM maven:3.8.4-jdk-8
 WORKDIR /usr/msc/app
-COPY package*.json ./
-RUN npm install && npm install typescript -g && npm install typeorm -g
-COPY . .
-RUN tsc
-EXPOSE 5000
-CMD ["node", "./dist/index.js"]
+RUN mvn clean install package
+ARG JAR_FILE=target/*.jar
+COPY ${JAR_FILE} application.jar
+ENTRYPOINT ["java","-jar","/application.jar"]
