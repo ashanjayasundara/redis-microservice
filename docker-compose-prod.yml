@@ -1,0 +1,13 @@
+version: "3.2"
+services:
+  redis-message-broker:
+    image: ashanust/msc-redis-microservice:latest
+    environment:
+      - redis.host=redis-10985.c289.us-west-1-2.ec2.cloud.redislabs.com
+      - redis.port=10985
+      - redis.password=O2lKbS4KMLQA5OJDcdoxzSHXYHw7GmDg
+      - deployment.type=PROD
+    volumes:
+      - ./logs/:/logs/
+    ports:
+      - 7788:7788
