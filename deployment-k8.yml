@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: msc-redis-cache-cdn-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: msc-redis-cache-cdn-deployment
+  
+  template:
+    metadata:
+      labels:
+        app: msc-redis-cache-cdn-deployment
+    
+    spec:
+      containers:
+      - name: msc-redis-cache-cdn-deployment
+        image: ashanust/msc-redis-microservice:latest
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 7788
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: msc-redis-cache-cdn-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: msc-redis-cache-cdn-deployment
+  ports:
+  - port: 80
+    targetPort: 7788
+    nodePort: 30010
+    protocol: TCP
+

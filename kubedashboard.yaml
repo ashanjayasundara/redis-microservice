@@ -1,0 +1,34 @@
+# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be
+# reopened with the relevant failures.
+#
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"labels":{"k8s-app":"kubernetes-dashboard"},"name":"kubernetes-dashboard","namespace":"kubernetes-dashboard"},"spec":{"ports":[{"port":443,"targetPort":8443}],"selector":{"k8s-app":"kubernetes-dashboard"}}}
+  creationTimestamp: "2021-12-08T13:12:16Z"
+  labels:
+    k8s-app: kubernetes-dashboard
+  name: kubernetes-dashboard
+  namespace: kubernetes-dashboard
+  resourceVersion: "201078"
+  uid: abbe2fa2-2607-44af-9698-ffd3b43ef7a6
+spec:
+  clusterIP: 10.100.123.33
+  clusterIPs:
+    - 10.100.123.33
+  ipFamilies:
+    - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+    - port: 443
+      protocol: TCP
+      targetPort: 8443
+  selector:
+    k8s-app: kubernetes-dashboard
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}
